@@ -7,18 +7,23 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-
-    <div class="card text-center">
-        <div class="card-header">
-            Featured
+    @foreach($news as $news)
+        <div class="card text-center">
+            <div class="card-header">
+                Kategorijos:
+                @foreach($news-> categories as $category)
+               {{$category -> name}}
+               @endforeach 
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{$news-> title}}</h5>
+                <p class="card-text">{{$news-> text}}</p>
+                <a href="#" class="btn btn-primary">Read All</a>
+            </div>
+            <div class="card-footer text-muted">
+               Sukurta: 
+               {{$news-> created_at}}
+            </div>
         </div>
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-        <div class="card-footer text-muted">
-            2 days ago
-        </div>
-    </div>
+    @endforeach  
 @endsection
