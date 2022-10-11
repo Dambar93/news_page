@@ -32,6 +32,7 @@ class NewsController extends Controller
                     
                 );
             }
+            $news -> save();
             return redirect('news')
                 ->with('success', 'News created successfully!');
         }
@@ -45,5 +46,7 @@ class NewsController extends Controller
         $news = News::find($id);
         return view('news.show', compact('news'));
     }
+
+
 
 }

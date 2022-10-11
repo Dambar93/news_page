@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\CommentController;
 
 
 /*
@@ -21,4 +22,5 @@ Route::get('/', function () {
 Route::get('/news', [NewsController::class, 'list'])->name('news.list');
 Route::match(['get','post'],'/news/create', [NewsController::class, 'create'])->name('news.create');
 Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
+Route::post('/comment/{id}', [CommentController::class, 'create'])->name('comment.create');
 
