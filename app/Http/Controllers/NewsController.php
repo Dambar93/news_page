@@ -47,6 +47,20 @@ class NewsController extends Controller
         return view('news.show', compact('news'));
     }
 
+    public function table()
+    {
+        $news = News::all();
+        return view('news.table', compact('news'));
+    }
+
+    public function destroy(News $news)
+    {
+        // dd($news);
+        $news->delete();
+        return redirect(route('news.table'))
+                ->with('success', 'News deleted successfully!');
+    }
+
 
 
 }

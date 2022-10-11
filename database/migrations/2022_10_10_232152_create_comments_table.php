@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('email');
             $table->string('comment');
-            $table->foreignId('news_id')->references('id')->on('news');
+            $table->foreignId('news_id')->references('id')->on('news')->onDelete('cascade');
             $table->timestamps();
         });
     }

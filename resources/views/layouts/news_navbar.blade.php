@@ -9,7 +9,7 @@
           <a class="nav-link active" aria-current="page" href="{{url('news')}}">News</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">News List</a>
+          <a class="nav-link" href="{{url('news/table')}}">News List</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{url('news/create')}}">Create News</a>

@@ -18,7 +18,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{$news-> title}}</h5>
                 <p class="card-text">{{$news-> text}}</p>
-                <a href="{{route('news.show',$news->id)}}" class="btn btn-primary">Read All</a>
+                <a href="{{route('news.show', $news)}}" class="btn btn-primary">Read All</a>
             </div>
             <div class="card-footer text-muted">
                Sukurta: 
