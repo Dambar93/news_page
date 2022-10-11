@@ -22,12 +22,13 @@
             <div class="col-xs-10 col-sm-10 col-md-10">
                 <div class="form-group">
                     <strong>Category:</strong>
-                    <select class="form-select" name="category_id[]"  multiple>                   
+                    <select class="form-select" name="category[]"  multiple>                   
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
-                    @error('category_id[]')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    
+                    @error('category')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
                    
                 </div>
             </div>

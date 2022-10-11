@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 
 class NewsController extends Controller
@@ -18,13 +19,20 @@ class NewsController extends Controller
     {
         if ($request->isMethod('POST')) {
             $data = $request->validate([
-                'title' => 'required|max:2',
+                'title' => 'required|max:50',
                 'text' => 'required',
-                'category_id' => 'required|array',
+                'category' => 'required|array',
             ]);
-            dd($data);
+            // dd($data['category']);
 
-
+            $news = News::create($data);
+            foreach ($data['category'] as $category) {
+                DB::table('news_categories')
+                ->updateOrInsert(
+                    ['news_id' => $news['id'], 'category_id' => $category],
+                    
+                );
+            }
             return redirect('news')
                 ->with('success', 'News created successfully!');
         }
