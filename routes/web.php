@@ -16,8 +16,9 @@ use App\Http\Controllers\NewsController;
 */
 
 Route::get('/', function () {
-    return view('news.show');
+    return view('news.list');
 });
 Route::get('/news', [NewsController::class, 'list'])->name('news.list');
 Route::match(['get','post'],'/news/create', [NewsController::class, 'create'])->name('news.create');
+Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
 

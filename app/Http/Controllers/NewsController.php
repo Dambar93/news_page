@@ -13,8 +13,9 @@ class NewsController extends Controller
     public function list()
     {
         $news = News::all();
-        return view('news.show', compact('news'));
+        return view('news.list', compact('news'));
     }
+
     public function create(Request $request)
     {
         if ($request->isMethod('POST')) {
@@ -39,5 +40,10 @@ class NewsController extends Controller
         return view('news.create', compact('categories'));
     }
 
+    public function show(int $id)
+    {
+        $news = News::find($id);
+        return view('news.show', compact('news'));
+    }
 
 }
