@@ -23,8 +23,6 @@ class NewsController extends Controller
                 'text' => 'required',
                 'category' => 'required|array',
             ]);
-            // dd($data['category']);
-
             $news = News::create($data);
             foreach ($data['category'] as $category) {
                 DB::table('news_categories')
