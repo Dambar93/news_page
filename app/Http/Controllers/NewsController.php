@@ -61,6 +61,31 @@ class NewsController extends Controller
                 ->with('success', 'News deleted successfully!');
     }
 
+    public function edit(Request $request, News $news)
+    {
+        if ($request->isMethod('POST')) {
+            $data = $request->validate([
+                'title' => 'required|max:50',
+                'text' => 'required',
+                'category' => 'required|array',
+            ]);
+            $news = News::create($data);
+            foreach ($data['category'] as $category) {
+                DB::table('news_categories')
+                ->updateOrInsert(
+                    ['news_id' => $news['id'], 'category_id' => $category],
+                    
+                );
+            }
+            $news -> save();
+            return redirect('news')
+                ->with('success', 'News created successfully!');
+        }
+        $categories = Category::all();
+        return view('news.edit', compact('news', 'categories'));
+
+    }
+
 
 
 }

@@ -21,7 +21,7 @@
                     <td>{{$news -> title}}</td>
                     <td>{{$news -> text}}</td>
                     <td>
-                        <a href=""><button type="button" class="btn btn-primary">Edit</button></a>
+                        <a href="{{route('news.edit',$news->id)}}"><button type="button" class="btn btn-primary">Edit</button></a>
                         <form action="{{route('news.destroy',$news->id)}}" method="post">
                             @csrf
                             @method("DELETE")

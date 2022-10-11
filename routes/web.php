@@ -22,6 +22,7 @@ Route::get('/', function () {
 Route::get('/news/table', [NewsController::class, 'table'])->name('news.table');
 Route::get('/news', [NewsController::class, 'list'])->name('news.list');
 Route::match(['get','post'],'/news/create', [NewsController::class, 'create'])->name('news.create');
+Route::match(['get','post'],'/news/edit/{news}', [NewsController::class, 'edit'])->name('news.edit');
 Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
 Route::delete('/news/delete/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
 Route::post('/comment/{id}', [CommentController::class, 'create'])->name('comment.create');
