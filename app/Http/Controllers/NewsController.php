@@ -21,9 +21,9 @@ class NewsController extends Controller
         if ($request->isMethod('POST')) {
             $data = $request->validate(
                 [
-                'title' => 'required|max:50',
-                'text' => 'required',
-                'category' => 'required|array',
+                    'title' => 'required|max:50',
+                    'text' => 'required|min:3|max:1000',
+                    'category' => 'required|array',
                 ]
             );
             $news = News::create($data);

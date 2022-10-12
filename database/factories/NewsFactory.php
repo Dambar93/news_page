@@ -18,7 +18,7 @@ class NewsFactory extends Factory
     {
         return [
             'title' => $this->faker->streetName,
-            'text' => $this->faker->sentence(200),
+            'text' => $this->faker->sentence(100),
 
         ];
     }
