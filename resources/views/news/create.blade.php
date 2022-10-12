@@ -15,7 +15,7 @@
             <div class="col-xs-10 col-sm-10 col-md-10">
                 <div class="form-group">
                     <strong>Text:</strong>
-                    <input required type="text" name="text" value="{{ old('text') }}" class="form-control @error('text') is-invalid @enderror" placeholder="News text">
+                    <textarea required class="form-control @error('text') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="text" value="{{ old('text') }}"  placeholder="Text"></textarea>
                     @error('text')<div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>
             </div>

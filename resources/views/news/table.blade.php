@@ -2,11 +2,7 @@
 
 @section('body')
 
-@if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
+    @include('layouts.messages')
     <table class="table">
         <thead>
             <tr>

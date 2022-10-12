@@ -2,14 +2,10 @@
 
 @section('body')
 
-@if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
+    @include('layouts.messages')    
     <div class="card text-center">
         <div class="card-header">
-            Kategorijos:
+            Categories:
             @foreach($news -> categories as $category)
             {{$category -> name}}
             @endforeach 
@@ -18,13 +14,12 @@
             <h5 class="card-title">{{$news -> title}}</h5>
             <p class="card-text">{{$news -> text}}</p>
         </div>
-        <div class="card-footer text-muted">
-            Sukurta: 
-            {{$news -> created_at}}
-        </div>
     </div>
     <div>
         <h4>Comments:</h4>
+        @if (count($news -> comments) === 0)
+            <h5>No comments yet</h5>
+        @endif
         @foreach ($news -> comments as $comment)
             <div class="card">
                 <h5 class="card-header">{{$comment -> email}}</h5>

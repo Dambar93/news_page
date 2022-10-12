@@ -4,6 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\News;
+use App\Models\Comment;
+use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +18,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        News::factory(10)->create();
+        Category::factory(11)->create();
+        for ($i = 1; $i < 11; $i++) {
+            DB::table('news_categories')->insert([
+                'news_id' => $i,
+                'category_id' => $i,
+            ]);
+            DB::table('news_categories')->insert([
+                'news_id' => $i,
+                'category_id' => 11,
+            ]);
+        }
+        Comment::factory(100)->create();
     }
 }
