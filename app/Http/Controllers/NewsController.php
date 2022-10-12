@@ -69,7 +69,8 @@ class NewsController extends Controller
                 'text' => 'required',
                 'category' => 'required|array',
             ]);
-            $news = News::create($data);
+            DB::table('news_categories')->where('news_id', $news -> id)->delete();
+            $news -> update($data);
             foreach ($data['category'] as $category) {
                 DB::table('news_categories')
                 ->updateOrInsert(
@@ -78,11 +79,16 @@ class NewsController extends Controller
                 );
             }
             $news -> save();
-            return redirect('news')
-                ->with('success', 'News created successfully!');
+            return redirect(route('news.table'))
+                ->with('success', 'News updated successfully!');
+        }
+        $activeCategories = array();
+        foreach($news -> categories as $category)
+        {
+            $activeCategories[$category -> id] = $category -> id;
         }
         $categories = Category::all();
-        return view('news.edit', compact('news', 'categories'));
+        return view('news.edit', compact('news', 'categories', 'activeCategories'));
 
     }
 

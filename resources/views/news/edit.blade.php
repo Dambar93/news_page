@@ -1,7 +1,7 @@
 @extends('layouts.news_template')
 
 @section('body')
-    <form action="{{ route('news.create') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('news.edit',$news->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="row">
@@ -23,21 +23,21 @@
             <div class="col-xs-10 col-sm-10 col-md-10">
                 <div class="form-group">
                     <strong>Category:</strong>
-                    <select class="form-select" name="category[]"  multiple>     
+                    <select class="form-select" name="category[]"  multiple>  
+
            
                         @foreach($categories as $category)
-                            @foreach ($news -> categories as $activeCategory)
-                                @if ($activeCategory -> id === $category -> id)
+                                @if (isset($activeCategories[$category -> id]))
                                     {
                                         <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                                     }
-                                    @else{
-                                        <option value="{{ $category->id }}" >{{ $category->name }}</option>
+                                @else
+                                    {
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     }
+                                    
+                                    
                                 @endif
-                                
-                            @endforeach   
-                            
                         @endforeach
                     </select>
                     
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 text-center">
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
 
